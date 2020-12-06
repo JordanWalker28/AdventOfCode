@@ -1,6 +1,6 @@
 from functions import *
 
-numbers = readFile('day3.txt')
+numbers = readFile('input/day3.txt')
 
 def day3(numbers, seq):
     treeCount = 0
@@ -10,8 +10,6 @@ def day3(numbers, seq):
     while row +1 < len(numbers):
         col+=seq[0]
         row+= seq[1]
-
-        
         space = numbers[row][col % len(numbers[row])]
         
         if space== '#':
@@ -27,7 +25,6 @@ sum = 1
 
 for i in list:
     sum = sum * day3(numbers, i)
-    print(sum)
     
 print(sum)
 

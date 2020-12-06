@@ -1,6 +1,6 @@
 from functions import *
 
-numbers = readFile('day2.txt')
+numbers = readFile('input/day2.txt')
 
 line = []
 
