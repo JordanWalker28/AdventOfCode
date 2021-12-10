@@ -4,6 +4,11 @@ def readFile(x):
     input = [int(entry.strip()) for entry in lines]
     return input
     
+def readTextFile(x):
+    with open(x, 'r') as f:
+        lines = f.readlines()
+    return lines
+    
 def countIncreases(list):
     newIncreases = 0
     for x in range (1 , len(list)):
