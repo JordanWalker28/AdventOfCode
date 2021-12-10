@@ -1,4 +1,3 @@
-
 from functions import *
  
 numbers = readFile('input/day1-1.txt')
