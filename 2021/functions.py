@@ -3,12 +3,22 @@ def readFile(x):
         lines = f.readlines()
         input = [int(entry.strip()) for entry in lines]
     return input
-  
+      
 def readTextFile(x):
     with open(x, 'r') as f:
         lines = f.readlines()
     return lines
     
+def readFileAsSingle(x):
+    with open(x, 'r') as f:
+            line = f.read()
+    return line
+    
+def readFileAsSingleSplit(x):
+    with open(x, 'r') as f:
+            line = f.read().split('\n\n')
+    return line
+ 
 def countIncreases(list):
     newIncreases = 0
     for x in range (1 , len(list)):
