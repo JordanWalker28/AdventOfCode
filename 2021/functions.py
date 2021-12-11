@@ -67,3 +67,34 @@ def workoutPositionTwo(positions):
             aim += int(b)
     return horizontal * depth
     
+def createBoard(Boards):
+    boards = []
+    for board in Boards:
+        rows = [[int(i) for i in row.split()] for row in board.split('\n')]
+        boards.append([set(row) for row in rows])
+        boards.append([set(col) for col in zip(*rows)])
+    return boards
+
+def FindBoard(BingoCalls, Boards, part1):
+    BingoCalls = map(int, BingoCalls.split(','))
+    Boards = createBoard(Boards)
+    for num in BingoCalls:
+        for x, board in enumerate(Boards):
+                if(part1):
+                    if {num} in board:
+                        return (sum(sum(group) for group in board) - num) * num
+                    else:
+                        Boards[x] = [group.difference({num}) for group in board]
+                else:
+                    if board is not None:
+                        if {num} in board:
+                            winner = (sum(sum(group) for group in board) - num) * num
+                            Boards[x] = None
+                            if x % 2:
+                                Boards[x-1] = None
+                            else:
+                                Boards[x+1] = None
+                        else:
+                            Boards[x] = [group.difference({num}) for group in board]
+    return winner
+    
