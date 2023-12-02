@@ -1,7 +1,6 @@
 import os
 
 def calculate_total_sum1(file_path):
-    # Open the file
     with open(file_path, 'r') as file:
         total_sum = 0
 
@@ -23,54 +22,45 @@ def calculate_total_sum1(file_path):
         return total_sum
     
 def calculate_total_sum2(file_path):
-    # Define a dictionary to map numeric words to digits
-    word_to_digit = {'one': '1', 'two': '2', 'three': '3', 'four': '4', 'five': '5',
-                     'six': '6', 'seven': '7', 'eight': '8', 'nine': '9'}
-
-    # Open the file
     with open(file_path, 'r') as file:
         total_sum = 0
 
         for line in file:
-            first_digit = None
-            last_digit = None
-            line_sum = 0
+            line_sum = get_first_and_last_digits(line)
+            total_sum += line_sum
 
-            current_word = ''
-            for char in line:
-                # Check if the character is alphanumeric
-                if char.isalnum():
-                    # Check if the character is a digit
-                    if char.isdigit():
-                        if first_digit is None:
-                            first_digit = char
-                        last_digit = char
-                    else:
-                        # Construct the current word by appending non-digit characters
-                        current_word += char.lower()
+        return total_sum
 
-                        # Check if the current word is a numeric word
-                        if current_word in word_to_digit:
-                            digit = word_to_digit[current_word]
-                            if first_digit is None:
-                                first_digit = digit
-                            last_digit = digit
-                            current_word = ''
+                
+def get_first_and_last_digits(line):
+    lettermap = {
+        letters: str(number + 1)
+        for number, letters in enumerate(
+            ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
+        )
+    }
 
-            if first_digit is not None and last_digit is not None:
-                line_sum = int(first_digit + last_digit)
-                total_sum += line_sum
+    line_sum = 0
+    digits = []
+    for i, c in enumerate(line):
+        if c.isdigit():
+            digits.append(c)
 
-    return total_sum
+        for letters, number in lettermap.items():
+            if line[i:].startswith(letters):
+                digits.append(number)
+
+    line_sum += int(digits[0] + digits[-1])
+    return line_sum
 
 if __name__ == "__main__":
     script_dir = os.path.dirname(os.path.realpath(__file__))
     parent_dir = os.path.dirname(script_dir)
-    relative_path = os.path.join('testInput', 'day1_2.txt')
+    relative_path = os.path.join('input', 'day1.txt')
     file_path = os.path.join(parent_dir, relative_path)
 
-    # result = calculate_total_sum1(file_path)
-    # print(result)
-    
+    result = calculate_total_sum1(file_path)
     result2 = calculate_total_sum2(file_path)
+
+    print(result)
     print(result2)
