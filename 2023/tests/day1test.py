@@ -1,5 +1,7 @@
 import unittest
+import sys
 import os
+sys.path.append('../questions')
 
 from day1 import *
 
