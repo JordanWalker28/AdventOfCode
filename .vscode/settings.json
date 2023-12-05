@@ -1,5 +1,6 @@
 {
     "python.analysis.extraPaths": [
-        "./2023/questions"
+        "./2023/questions",
+        "./2023/functions"
     ]
 }

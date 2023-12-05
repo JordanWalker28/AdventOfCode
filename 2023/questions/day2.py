@@ -30,10 +30,9 @@ def calculate_total_sum1(file_path):
                 game_name = game_name.split(" ")
                 index_count += int(game_name[1])
     print(sum_of_max)
+    print(index_count)
     return index_count
 
 if __name__ == "__main__":
     file_path = setup_file_path('input', 'day2.txt')
-
-    result = calculate_total_sum1(file_path)
-    print (result)
+    calculate_total_sum1(file_path)
