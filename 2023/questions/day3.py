@@ -1,4 +1,6 @@
-import os
+import sys
+sys.path.append('../functions')
+from commonFunctions import *
 
 def read_input_file(file_path):
     with open(file_path) as file:
@@ -42,10 +44,7 @@ def process_gears(G, R, C):
     return p1, nums
 
 def main():
-    script_dir = os.path.dirname(os.path.realpath(__file__))
-    parent_dir = os.path.dirname(script_dir)
-    relative_path = os.path.join('input', 'day3.txt')
-    file_path = os.path.join(parent_dir, relative_path)
+    file_path = setup_file_path('input', 'day3.txt')
 
     data = read_input_file(file_path)
     G, R, C = parse_input(data)

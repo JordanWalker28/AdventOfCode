@@ -1,6 +1,9 @@
-import os
+import sys
+sys.path.append('../functions')
+from commonFunctions import *
+index = {'red': 12, 'blue': 14, 'green': 13}
 
-def calculate_total_sum1(file_path, index):
+def calculate_total_sum1(file_path):
     index_count = 0
     sum_of_max = 0
     with open(file_path, 'r') as file:
@@ -11,10 +14,8 @@ def calculate_total_sum1(file_path, index):
             game_data = game_info[1].strip()
             game_rounds = game_data.split(";")
             max_color = {'red': 1, 'blue': 1, 'green': 1}
-            print(game_name)
             for game in game_rounds:
                 game_dict = {color: int(quantity) for quantity, color in (item.split() for item in game.split(', '))}
-                print(game_dict)
                 for color in game_dict:
                     if(game_dict[color] > max_color[color]):
                         max_color[color] = game_dict[color]                        
@@ -32,11 +33,7 @@ def calculate_total_sum1(file_path, index):
     return index_count
 
 if __name__ == "__main__":
-    script_dir = os.path.dirname(os.path.realpath(__file__))
-    parent_dir = os.path.dirname(script_dir)
-    relative_path = os.path.join('input', 'day2.txt')
-    file_path = os.path.join(parent_dir, relative_path)
+    file_path = setup_file_path('input', 'day2.txt')
 
-    index = {'red': 12, 'blue': 14, 'green': 13}
-    result = calculate_total_sum1(file_path, index)
+    result = calculate_total_sum1(file_path)
     print (result)

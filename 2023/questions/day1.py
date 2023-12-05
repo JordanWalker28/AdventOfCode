@@ -1,4 +1,6 @@
-import os
+import sys
+sys.path.append('../functions')
+from commonFunctions import *
 
 def calculate_total_sum1(file_path):
     with open(file_path, 'r') as file:
@@ -54,10 +56,7 @@ def get_first_and_last_digits(line):
     return line_sum
 
 if __name__ == "__main__":
-    script_dir = os.path.dirname(os.path.realpath(__file__))
-    parent_dir = os.path.dirname(script_dir)
-    relative_path = os.path.join('input', 'day1.txt')
-    file_path = os.path.join(parent_dir, relative_path)
+    file_path = setup_file_path('input', 'day1.txt')
 
     result = calculate_total_sum1(file_path)
     result2 = calculate_total_sum2(file_path)
